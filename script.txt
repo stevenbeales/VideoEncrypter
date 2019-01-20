@@ -1,0 +1,24 @@
+# Automatically abort script on errors
+option batch abort
+
+# Disable overwrite confirmations that conflict with the previous
+option confirm off
+
+# Connect without using a password
+open sftp://replacewithmyftp -hostkey="ssh-rsa 2048 a5:8c:b7:86:56:44:4c:16:62:08:f7:d0:3d:18:53:02" -privatekey=key.ppk
+
+# Change remote directory
+cd inbound
+
+# Force binary mode transfer
+option transfer binary
+
+# Upload the file to current working directory
+put -resume "%1%" "%2%"
+
+
+# Disconnect
+close
+
+# Exit WinSCP
+exit
